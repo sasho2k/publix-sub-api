@@ -1,7 +1,7 @@
 package main
 
 import (
-	"publix-sub-sale-monitor/router"
+	"github.com/sasho2k/publix-sub-api/router"
 )
 
 // main = main.

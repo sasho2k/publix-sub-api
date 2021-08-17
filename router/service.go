@@ -2,13 +2,17 @@ package router
 
 import (
 	"github.com/gofiber/fiber"
-	"publix-sub-sale-monitor/workforce"
+	"github.com/sasho2k/publix-sub-api/workforce"
 )
 
 // StartService will serve as our router service. It is responsible for capturing traffic to our route and returning
 // a response based on the parameter given to :storeNumber. There is also a check beforehand.
 func StartService() {
 	app := fiber.New(fiber.Config{StrictRouting: true, GETOnly: true})
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendStatus(200)
+	})
 
 	app.Get("/get-sale/:storeNumber", func(c *fiber.Ctx) error {
 		storeNumber, err := CheckParam(c.Params("storeNumber"))
