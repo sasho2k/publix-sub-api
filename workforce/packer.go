@@ -41,9 +41,14 @@ func GrabSubs(storeNumber int) (subsList []LocalSubStruct, err error) {
 	}
 
 	for _, product := range response.Products {
+		price := "UNAVAILABLE IF 9999."
+		if storeNumber != 9999 {
+			price = strings.Split(product.Priceline1, " ")[2]
+		}
+
 		subs = append(subs, LocalSubStruct{
 			Name:        product.Title,
-			Price:       strings.Split(product.Priceline1, " ")[2],
+			Price:       price,
 			Description: product.Shortdescription1,
 			ProductID:   product.Productid,
 			ItemCode:    product.Itemcode,
