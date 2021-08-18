@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gofiber/fiber"
 	"github.com/sasho2k/publix-sub-api/workforce"
+	"net/http"
 )
 
 // StartService will serve as our router service. It is responsible for capturing traffic to our route and returning
@@ -11,7 +12,7 @@ func StartService() {
 	app := fiber.New(fiber.Config{GETOnly: true})
 
 	app.Get("/status", func(c *fiber.Ctx) error {
-		return c.SendStatus(200)
+		return c.SendStatus(http.StatusOK)
 	})
 
 	app.Get("/get-sale/:storeNumber", func(c *fiber.Ctx) error {
