@@ -18,12 +18,12 @@ func StartService() {
 	app.Get("/get-sale/:storeNumber", func(c *fiber.Ctx) error {
 		storeNumber, err := CheckParam(c.Params("storeNumber"))
 		if err != nil {
-			return err
+			return c.SendString(err.Error())
 		}
 
 		sub, err := workforce.GrabDailySub(storeNumber)
 		if err != nil {
-			return err
+			return c.SendString(err.Error())
 		}
 
 		return c.JSON(sub)
@@ -32,12 +32,12 @@ func StartService() {
 	app.Get("/get-subs/:storeNumber", func(c *fiber.Ctx) error {
 		storeNumber, err := CheckParam(c.Params("storeNumber"))
 		if err != nil {
-			return err
+			return c.SendString(err.Error())
 		}
 
 		subs, err := workforce.GrabSubs(storeNumber)
 		if err != nil {
-			return err
+			return c.SendString(err.Error())
 		}
 
 		return c.JSON(subs)

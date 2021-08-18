@@ -47,10 +47,10 @@ type PublixResponse struct {
 
 // LocalSubStruct is the local struct for sub information. This is what we transfer to from initial response struct.
 type LocalSubStruct struct {
-	Name        string `json:"Name"`
-	Price       string `json:"Price"`
-	Description string `json:"Description"`
-	ProductID   string `json:"ProductID"`
-	ItemCode    string `json:"ItemCode"`
-	SavingMsg   string `json:"SavingMsg"`
+	Name        string `json:"name"`
+	Price       string `json:"price"`
+	Description string `json:"description"`
+	ProductID   string `json:"productID"`
+	ItemCode    string `json:"itemCode"`
+	SavingMsg   string `json:"savingMsg"`
 }
