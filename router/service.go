@@ -8,9 +8,9 @@ import (
 // StartService will serve as our router service. It is responsible for capturing traffic to our route and returning
 // a response based on the parameter given to :storeNumber. There is also a check beforehand.
 func StartService() {
-	app := fiber.New(fiber.Config{StrictRouting: true, GETOnly: true})
+	app := fiber.New(fiber.Config{GETOnly: true})
 
-	app.Get("/", func(c *fiber.Ctx) error {
+	app.Get("/status", func(c *fiber.Ctx) error {
 		return c.SendStatus(200)
 	})
 
