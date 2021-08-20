@@ -15,6 +15,15 @@ func StartService() {
 		return c.SendStatus(http.StatusOK)
 	})
 
+	app.Get("/get-sale/", func(c *fiber.Ctx) error {
+		sub, err := workforce.GrabDailySub(1295)
+		if err != nil {
+			return c.SendString(err.Error())
+		}
+
+		return c.JSON(sub)
+	})
+
 	app.Get("/get-sale/:storeNumber", func(c *fiber.Ctx) error {
 		storeNumber, err := CheckParam(c.Params("storeNumber"))
 		if err != nil {
