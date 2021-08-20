@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"github.com/sasho2k/publix-sub-api/workforce"
 	"net/http"
 )
