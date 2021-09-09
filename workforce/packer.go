@@ -2,6 +2,7 @@ package workforce
 
 import (
 	"fmt"
+	"golang.org/x/net/html"
 	"strings"
 )
 
@@ -16,7 +17,7 @@ func GrabDailySub(storeNumber int) (sub LocalSubStruct, err error) {
 	for _, product := range response.Products {
 		if product.Onsalemsg == "On Sale" {
 			return LocalSubStruct{
-				Name:        product.Title,
+				Name:        html.UnescapeString(product.Title),
 				Price:       strings.Split(product.Priceline1, " ")[2],
 				Description: product.Shortdescription1,
 				ProductID:   product.Productid,
