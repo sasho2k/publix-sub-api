@@ -19,7 +19,7 @@ func GrabDailySub(storeNumber int) (sub LocalSubStruct, err error) {
 			return LocalSubStruct{
 				Name:        html.UnescapeString(product.Title),
 				Price:       strings.Split(product.Priceline1, " ")[2],
-				Description: product.Shortdescription1,
+				Description: html.UnescapeString(product.Shortdescription1),
 				ProductID:   product.Productid,
 				ItemCode:    product.Itemcode,
 				SavingMsg:   product.Savingmsg,
@@ -42,15 +42,15 @@ func GrabSubs(storeNumber int) (subsList []LocalSubStruct, err error) {
 	}
 
 	for _, product := range response.Products {
-		price := "UNAVAILABLE IF 9999."
+		price := "VARIES PER STORE IF STORE NUMBER IS 9999. (9999 IS DEFAULT. GET CUSTOM STORE INFO BY ADDING A STORE NUMBER.)."
 		if storeNumber != 9999 {
 			price = strings.Split(product.Priceline1, " ")[2]
 		}
 
 		subs = append(subs, LocalSubStruct{
-			Name:        product.Title,
+			Name:        html.UnescapeString(product.Title),
 			Price:       price,
-			Description: product.Shortdescription1,
+			Description: html.UnescapeString(product.Shortdescription1),
 			ProductID:   product.Productid,
 			ItemCode:    product.Itemcode,
 			SavingMsg:   product.Savingmsg,
